@@ -1,0 +1,25 @@
+\begin{tabular}{p{.3cm}lcc} \\ 
+\hline 
+\multicolumn{2}{l}{Moments} & Data & Model \\ 
+\hline 
+\multicolumn{4}{l}{Averages} \\ 
+&R\&D to sales & 4.575 & 0.082 \\ 
+&fixed costs & 0.712 & 0.229 \\ 
+&profitability & 0.046 & 0.365 \\ 
+&Tobin's q & 2.065 & 3.571 \\ 
+\multicolumn{4}{l}{Standard deviations} \\ 
+&R\&D to sales & 3.355 & 0.028 \\ 
+&profitability & 0.114 & 0.309 \\ 
+&investment & 6169.643 & 0.101 \\ 
+\multicolumn{4}{l}{Autocorrelations} \\ 
+&R\&D to sales & 0.082 & 0.709 \\ 
+&profitability & 0.148 & 0.555 \\ 
+&investment & -0.200 & 0.317 \\ 
+\multicolumn{4}{l}{Correlations between} \\ 
+&R\&D to sales and investment & -0.005 & -0.108 \\ 
+&investment and Tobin's q & -0.000 & 0.341 \\ 
+&lagged R\&D to sales and sales growth & 0.040 & 0.286 \\ 
+\\ 
+\multicolumn{3}{l}{Success rate}& 0.833 \\ 
+\hline 
+\end{tabular} 

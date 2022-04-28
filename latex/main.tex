@@ -1,0 +1,27 @@
+\documentclass{article} % 实例参考:https://www.overleaf.com/learn/latex/Management_in_a_large_project
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\graphicspath{{images/}{../images/}}
+
+\usepackage{blindtext} % 示例的一段文字;
+
+\usepackage{subfiles} % Best loaded last in the preamble
+
+\title{Subfile Example}
+\author{Team Learn Overleaf}
+\date{ }
+
+\begin{document} % 以上是导言区;
+
+\maketitle
+
+\section{Introduction}
+
+\subfile{sections/introduction}
+
+\section{Second section}
+
+\subfile{sections/section2}
+
+\end{document}

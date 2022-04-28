@@ -1,0 +1,234 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+    /* 3.2 基本选择器 */
+    /* 3.2.1 标签选择器*/
+    p {
+        font-size: 12px;
+        color: blue; 
+    }
+    /* 3.2.2 类选择器*/
+    .font18px { 
+        font-size:18px;
+    }
+    .underline {
+        text-decoration: underline;
+    }
+    .italic {
+        font-style: italic;
+    }
+    /*指定类选择器：为类选择器指定使用范围，标签p和font18px类捆绑在一起来定义选择器*/
+    p.font18px { 
+        font-size: 32px;
+    }
+    /* 3.2.3 ID选择器 */
+    #box { 
+        background: url(images/2.jpg) center bottom;
+        height: 200px;
+        width: 400px;
+        border: solid 2px red;
+        padding: 100px;
+    }
+    /* 为ID选择器指定标签范围，此选择器会优先于上面ID选择器，浏览器会优先解析此定义样式 */
+    div#box { 
+        background: url(images/bg1.gif) center bottom;
+        height: 200px;
+        width: 400px;
+        border: solid 2px blue;
+        padding: 20px;
+    }
+    /* 3.2.4 通配选择器 */
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    /* 3.3 组合选择器 */
+    /* 两个或多个基本选择器组合在一起，就构成了一个组合选择器 */
+    /* 包含选择器：用空格标识符来表示 */
+    #header p { 
+        font-size: 14px;
+    }
+    #main p {
+        font-size: 12px;
+    }
+    span { /* span元素的默认样式 */
+        font-size: 12px;
+    }
+    div > span { /* 子选择器：使用尖括号表示，div元素包含span子元素的默认样式 */
+        font-size: 24px;
+    }
+    h2, p, h3 {
+        margin: 0;
+        padding: 0;
+        height: 30px;
+    }
+    p+h3{ /* 相邻选择器，+号连接，只有p和h3相邻的标签，背景色设置为#0099FF */
+        background-color: #0099FF;
+    }
+    p~h3 {/* 兄弟选择器，~连接，选择p后面所有的h3兄弟标签，都显示为斜体 */
+        font-style: italic;
+    }
+    h4,h5,h6 {/*分组选择器，，逗号连接通过逗号链接一组选择器*/
+        background-color: burlywood;
+        margin: 0;
+        margin-bottom: 10px;
+
+    }
+    h1+h2,h2+h3 {/*  */
+        color: red;
+    }
+    body>h6,h4>span {
+        font-size: 20px;
+    }
+    h5 span,h6 span {
+        color: chartreuse;
+    }
+    h5 span[class],h6 span[class] {
+        background-color: rgb(124, 128, 128);
+    }
+    /* 灯箱外框样式 */
+    .pic_box {
+        border: solid 6px #bbb; 
+        position: relative;
+        float:left;
+    }
+    .pic_box img {
+        width: 500px;
+        border: solid 1px #fff;
+    }
+    /* 导航框样式 */
+    .nav {
+        background: #999;
+        border: 1px solid #ccc;
+        padding: 4px 12px;
+        float: left;
+        opacity: 0.6;
+        position: absolute;
+        bottom: 6px;
+        right: 12px;
+    }
+    /* 导航按钮样式 */
+    .nav a {
+        float: left;
+        display: block;
+        height: 20px;
+        line-height: 20px;
+        width: 20px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        text-align: center;
+        background: #f36;
+        color: green;
+        margin-right: 5px;
+        text-decoration: none;
+    }
+    .nav a:hover {
+        background: green;
+        color: #fff;
+    }
+    /* 属性选择器 */
+    /* E[attr]选择有某个属性的元素，而不管属性是什么，就可以使用这个属性选择器 */
+    .nav a[id] { /* 选择nav类下具有id属性的a标签 */
+        background: blue;
+        color: yellow;
+        font-weight: bold;
+    }
+    /* 类似于上面也可以使用多属性选择元素 */
+    .nav a[href][title] { /* 选择nav类下具有href和title属性的a标签 */
+        background: yellow;
+        color:green;
+    }
+    /* E[attr="value"]选择属性值等于value的元素 */
+    .nav a[id="first"] {
+        background: blue;
+        color: yellow;
+        font-weight: bold;
+    }
+
+
+
+    </style>
+
+
+</head>
+
+<body>
+    <p class="underline">问君能有几多愁，恰似一江春水向东流。</p>    <!-- 只加下划线效果 -->
+    <p class="font18px italic underline">剪不断，理还乱。是离愁，别有一番滋味在心头。</p>     <!-- 同时加字体、下划线和斜体效果 -->
+    <p class="italic">独自莫凭栏，无限江山，别时容易见时难。流水落花春去，也天上人间。</p>
+    <p class="font18px">欲穷千里目，更上一层楼。</p>     <!-- p标签下的font18px就指定为p.font18px下的32像素大小 -->
+    <div class="font18px">欲穷千里目，更上一层楼。</div>    <!-- div标签下的font18px则.font18px下的18像素大小 -->
+    <div id="box">问君能有几多愁，恰似一江春水向东流。</div>    <!-- ID选择器 -->
+    <div id="box">问君能有几多愁，恰似一江春水向东流。</div>    <!-- ID选择器 -->
+
+    <div id="wrap">
+        <div id="header"> <!-- #header p包含选择器定义了样式 -->
+            <h2>
+                <p>头部区域第1段文本</p>
+            </h2>
+            <p>头部区域第2段文本</p>
+            <p>头部区域第3段文本</p>
+        </div>
+        <div id="main">
+            <div>
+                <p>主体区域第1段文本</p>
+                <p>主体区域第2段文本</p>
+            </div>
+            <p>主体区域第3段文本</p>
+        </div>
+    </div>
+    <h2>
+        <span>HTML 文档树状结构</span> <!-- span标签定义的样式 -->
+    </h2>
+    <div id="box">
+        <span>
+            问君能有几多愁，恰似一江春水向东流。<!-- 通过div span子选择器定义了样式 -->
+        </span>
+    </div>
+    <div>
+        <h2>情况一：</h2>
+        <p>子选择器控制p标签，能控制我吗</p>
+        <h3>子选择器控制p标签</h3>   <!-- 通过p+h3相邻选择器定义了背景色样式 -->
+        <h2>情况二：</h2>
+        <div>我隔开段落和h3直接</div>
+        <p>子选择器控制p标签，能控制我吗</p>
+        <h3>相邻选择器</h3>     <!-- 通过p+h3相邻选择器定义了背景色样式 -->
+        <h2>情况三：</h2>
+        <h3>相邻选择器</h3>
+        <p>子选择器控制p标签，能控制我吗</p>
+        <div>
+            <h2>情况四：</h2>
+            <p>子选择器控制p标签，能控制我吗</p>
+            <h3>相邻选择器</h3>     <!-- 通过p+h3相邻选择器定义了背景色样式 -->
+        </div>
+    </div>
+    <h4>h4元素<span>这里是span元素</span></h4>
+    <h5>h5元素<span class="s1">这里是span元素</span></h5>
+    <h6>h6元素<span class="s2">这里是span元素</span></h6>
+<!-- 属性选择器 -->
+    <div class="pic_box">
+        <img src="images/bg1.jpg">
+        <div class="nav">
+            <a href="#1" class=" links item first" title="w3cplus" target="_blank" id="first">1</a>
+            <a href="#2" class=" links active item" title="test website" target="_blank" lang="zh">2</a>
+            <a href="#3" class=" links item" title="this is a link" target="_blank" lang="zh-cn">3</a>
+            <a href="#4" class=" links item" title="this is a link" target="_blank" lang="zh-cn">4</a>
+            <a href="#5" class=" links item" title="this is a link" target="_blank" lang="zh-cn">5</a>
+            <a href="#6" class=" links item" title="this is a link" target="_blank" lang="zh-cn">6</a>
+            <a href="#7" class=" links item" title="this is a link" target="_blank" lang="zh-cn">7</a>
+            <a href="#8" class=" links item" title="this is a link" target="_blank" lang="zh-cn">8</a>
+            <a href="#9" class=" links item" title="this is a link" target="_blank" lang="zh-cn">9</a>
+            <a href="#10" class=" links item last" id="last">10</a>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>

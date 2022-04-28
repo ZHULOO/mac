@@ -1,0 +1,5 @@
+custom toolchain commands:决定了编译顺序
+默认的顺序:xelatex-->bibtex-->xelatex-->xelatex
+%TEX %ARG %DOC.%EXT && %BIB %DOC && %TEX %ARG %DOC.%EXT && %TEX %ARG %DOC.%EXT
+只使用xelatex编译一次:
+%TEX %ARG %DOC.%EXT

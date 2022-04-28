@@ -1,0 +1,19 @@
+git clone "http://"
+git add .
+git commit -m""
+git push origin master
+git pull
+
+vscode进行git操作的时候,针对不同电脑上python路径设置不同的问题:
+需要将settings.json加入igonre忽略掉,不要对它进行版本控制;
+ignore文件只会对未加入版本控制的文件生效，所以你首先要把这个README.md文件移出版本控制。
+执行git rm -r README.md ，然后再commit一次，应该就会被版本控制忽略了。
+
+git rm --cached e:/mycode/python/.vscode/settings.json
+
+git rm --cached readme.md # 删除readme1.txt的跟踪，并保留在本地。
+git rm --f readme.md      # 删除readme1.txt的跟踪，并且删除本地文件。
+
+
+commit了超过100M的大文件,出错之后的解决办法:
+git filter-branch -f --index-filter "git rm -rf --cached --ignore-unmatch python/win.zip" -- --all

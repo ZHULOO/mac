@@ -1,0 +1,8 @@
+\begin{tabular}{l*{9}{c}} \\ 
+ \hline 
+Parameter & $\theta$ & $\rho$ & $\sigma$ & $\lambda$ & $a$ & $b$ & $\gamma$ & $fc$ & $\hat{\Psi}$ \\ 
+\hline 
+Estimate & 0.396 & 0.587 & 0.380 & 0.222 & 5.293 & 0.497 & 0.322 & 0.409 & 1230806 \\ 
+Std. err. & (0.442) & (1.782) & (4.304) & (4.830) & (1024.067) & (206.431) & (53.501) & (4.286) & \\ 
+\hline 
+\end{tabular} 

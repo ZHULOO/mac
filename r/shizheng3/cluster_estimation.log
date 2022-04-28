@@ -1,0 +1,24 @@
+starting worker pid=5212 on localhost:11802 at 23:35:26.384
+starting worker pid=4660 on localhost:11802 at 23:35:26.619
+starting worker pid=7588 on localhost:11802 at 23:35:26.861
+starting worker pid=10348 on localhost:11802 at 23:35:27.120
+Warning: namespace 'doParallel' is not available and has been replaced
+by .GlobalEnv when processing object ''
+Warning: namespace 'doParallel' is not available and has been replaced
+by .GlobalEnv when processing object ''
+Warning: namespace 'doParallel' is not available and has been replaced
+by .GlobalEnv when processing object ''
+Warning: namespace 'doParallel' is not available and has been replaced
+by .GlobalEnv when processing object ''
+Error in unserialize(node$con) : 读取链结时发生了错误
+Calls: <Anonymous> ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+停止执行
+Error in unserialize(node$con) : 读取链结时发生了错误
+Calls: <Anonymous> ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+停止执行
+Error in unserialize(node$con) : 读取链结时发生了错误
+Calls: <Anonymous> ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+停止执行
+Error in unserialize(node$con) : 读取链结时发生了错误
+Calls: <Anonymous> ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+停止执行

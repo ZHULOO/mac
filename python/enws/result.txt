@@ -1,0 +1,182 @@
+
+%0 Journal Article
+%T The Anatomy of Industry R&D Intensity Distributions
+%A Cohen, Wesley M
+%A Klepper, Steven
+%J American Economic Review
+%V 82
+%N 4
+%P 773-799
+%D 1992
+
+%0 Journal Article
+%T Executive Compensation: A New View from a Long-Term Perspective, 1936–2005
+%A Frydman, Carola
+%A Saks, Raven E.
+%J Social Science Electronic Publishing
+%V 23
+%N 5
+%P 2099-2138
+
+%0 Journal Article
+%T CEO年薪报酬、研发投资强度与公司财务绩效%CEO's annual remuneration, intensity of R&D investment and company's financial performance
+%A 刘振
+%J 科研管理
+%V 035
+%N 12
+%P 129-136
+
+%0 Journal Article
+%T How much does performance matter? A meta-analysis of CEO pay studies
+%A Henry
+%A L.
+%A Tosi
+%A and
+%A Steve
+%A Werner
+%A and
+%A Jeffrey
+%A P.
+%A Katz
+
+%0 Journal Article
+%T Executive incentives and the horizon problem : An empirical investigation
+%A Dechow, Patricia M.
+%A Sloan, Richard G.
+%J Journal of Accounting & Economics
+%V 14
+%N 1
+%P 51-89
+%D 1991
+
+%0 Journal Article
+%T Managerial risk-taking behavior and equity-based compensation
+%A Low, Angie
+%J Journal of Financial Economics
+%V 92
+%N 3
+%P 470-490
+
+%0 Journal Article
+%T Is Embodied Technology the Result of Upstream R&D? Industry-Level Evidence
+%A Wilson, Daniel J.
+%V 5
+%N 2
+%P 285-317
+
+%0 Journal Article
+%T Make or buy new technology: The role of CEO compensation contract in a firm’s route to innovation
+%A Xue, Yanfeng
+%V 12
+%N 4
+%P 659-690
+
+%0 Journal Article
+%T On the Usefulness of Financial Statement Information: A Suggested Research Approach
+%A Virgil, Pankoff Robert L.
+%J Accounting Review
+%V 45
+%N 2
+%P 269-279
+
+%0 Journal Article
+%T “准官员”的晋升机制:来自中国央企的证据
+%A 杨瑞龙
+%A 王元
+%A 聂辉华
+%J 管理世界
+%V 000
+%N 003
+%P 23-33
+
+%0 Journal Article
+%T 机构投资者介入公司治理效果的实证研究——基于CCGI~(NK)的经验研究
+%A 李维安
+%A 李滨
+%J 南开管理评论
+%N 1
+%P 6-16
+
+%0 Journal Article
+%T The Modern Corporation and Private Property.by A. A. Berle; G. C. Means
+%A Whittington, Review By: G.
+%J Economic Journal
+%V 80
+%N 317
+%P 120-122
+
+%0 Journal Article
+%T 机构投资者对上市公司内部控制有效性的影响研究
+%A 曹建新
+%J 财会通讯
+%N 18
+%P 100-102
+
+%0 Journal Article
+%T 股权结构对企业内部控制质量的影响分析——基于2007年上市公司内部控制信息数据的检验
+%A 吴益兵
+%A 廖义刚
+%A 林波
+%J 当代财经
+%N 9
+%P 112-116
+
+%0 Journal Article
+%T 上市公司信息披露政策对分析师预测的多重影响研究
+%A 白晓宇
+%J 金融研究
+%N 04
+%P 96-116
+
+%0 Journal Article
+%T Costly trade, managerial myopia, and long-term investment
+%A Holden, Craig W.
+%A Leonard L. Lundstrum
+%J Journal of Empirical Finance
+%V 16
+%N 1
+%P 0-135
+
+%0 Journal Article
+
+%0 Journal Article
+%T Does Stock Liquidity Enhance or Impede Firm Innovation?
+%A Fang, Vivian W.
+%A Tian, Xuan
+%A Tice, Sheri
+%J Journal of Finance
+%V 69
+%N 5
+%P 2085-2125
+
+%0 Journal Article
+
+%0 Journal Article
+%T How does openness affect the importance of incentives for innovation?
+%A Fu, Xiaolan
+%V 41
+%N 3
+%P 0-523
+
+%0 Journal Article
+%T Citation rates to technologically important patents
+%A Carpenter, Mark P.
+%A Francis Narin
+%A Patricia Woolf
+%V 3
+%N 4
+%P 160-163
+
+%0 Journal Article
+%T Direct validation of citation counts as indicators of industrially important patents
+%A M.B.
+%A Albert
+%A and
+%A D.
+%A Avery
+%A and
+%A F.
+%A Narin
+%A and
+%A P.
+

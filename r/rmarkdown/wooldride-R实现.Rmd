@@ -1,0 +1,38 @@
+---
+title: "Rmarkdown使用初步"
+author: "ZHULOO"
+CJKmainfont: Microsoft YaHei
+output:
+  html_document:
+    df_print: paged
+  pdf_document:
+    latex_engine: xelatex
+---
+
+## 行内代码
++ 尝试一下行内代码`r getRversion()`,结果会直接显示代码运行的结果.
+
+## 行间代码
++ 行之间显示代码块, 通过设置选项, 调整显示结果:
+```{r echo=TRUE}
+getRversion()
+```
++ `echo`: 输出文档中显示代码, 默认为True;
++ `eval`: 运行代码块代码,默认为True;
++ `fig.align`: `left`,`right`,or `center`,图显示的位置;
+
+## 交互式组件
+
+```{r}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
