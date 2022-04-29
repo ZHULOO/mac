@@ -1,10 +1,12 @@
 ***margins***
 	help margins
+sysuse auto,clear
+reg price mpg weight
 * margins example
 // Examples: obtaining margins of responses
 
     //Setup
-  		cd E:\data\margins
+  		cd /users/data\data\margins
         webuse margex,clear
         save margex.dta,replace
         use margex,clear

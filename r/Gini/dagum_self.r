@@ -9,7 +9,10 @@
 # ** 1.1 尝试分步计算 ----------------------------------------------------------
 rm(list = ls())
 library(dplyr) # distinct 和 count函数
-setwd("E:/MyGit/r/Gini")
+
+getwd()
+
+setwd("/users/zhulu/files/MyGit/r/Gini")
 haven::read_dta("gini.dta") |>
   mutate(
     loc = factor(

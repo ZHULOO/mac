@@ -50,13 +50,14 @@
 + 4.创建一个 R 文件并开始编码。
 #### 3.1 另外建议使用以下软件或扩展来增强在 `VS Code` 中使用 R 的体验：
 + [radian](https://github.com/randy3k/radian)：一个现代的R控制台，纠正了官方R终端的许多限制，并支持许多功能，如语法突出显示和自动完成。
+  + 但是我不喜欢用，不好用，设置太麻烦；
   + `conda install -c conda-forge radian`
   + `where.exe radian`
   + `conda install -c conda-forge jedi`:代码提示
   + `vs code`中设置:
     ```
     {
-    "r.bracketedPaste": true,
+    "r.bracketedPaste": true, #不使用radian时不要设置，否则会出错，会在运行命令前后加`～`
     "r.rterm.windows": "C:\\ProgramData\\Anaconda3\\envs\\geo\\Scripts\\radian.exe"
     //这里注意设置的是rterm的路径,而不是rpath;
     }
