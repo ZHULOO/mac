@@ -6,5 +6,8 @@
 # F4打开pdb窗口
 
 print("hello world!")
-x = input("please input a string :")
-print(x)
+print("123456")
+print("456789")
+print("你好世界")
+import os
+print(os.getcwd())

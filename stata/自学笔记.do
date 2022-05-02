@@ -1160,3 +1160,16 @@ cnstock          //获取中国股票代码
 
 ***help uniform
 
+cd "/users/zhulu/files/data"
+sysuse auto,clear
+reg price mpg
+estimates store m1
+reg price weight
+estimates store m2
+reg2docx m1 m2 using regresult.docx
+
+
+
+
+
+

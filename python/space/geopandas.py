@@ -150,3 +150,73 @@ ax = part_world.plot(ax=ax, alpha=0.6)
 ax = gpd.GeoSeries([geometry.box(minx=80, miny=0, maxx=110, maxy=30).boundary])\
     .plot(ax=ax, color='red')
 plt.show()
+
+#########################################geopandas读取数据##########################################
+import geopandas as gpd
+
+# geopandas将fiona作为操纵矢量数据读写功能的后端，使用geopandas.read_file()读取对应类型文件，而在后端实际上是使用
+# fiona.open来读入数据，即两者参数是保持一致的，读入的数据自动转换为GeoDataFrame，下面是geopandas.read_file()主要参数：
+
+# filename：str类型，传入文件对应的路径或url
+# layer：str类型，当要读入的数据格式为地理数据库.gdb或QGIS中的.gpkg时，传入对应图层的名称
+
+##### 多行数据合并 #####
+
+# 原始数据`china.shp`中每个要素不是单独的省份而是面，即有的包含众多岛屿的省份会由若干行共同构成，因此使用`geopandas`地理
+# 操作中的融合`dissolve()`按照`OWNER`列融合分离的面为多面，从而使得每一行是对应的完整的省份，关于更多地理操作将会在后续的对应的文章介绍）：
+# `dissolve()`:将多行显示同一个地区的`geometry`合并到一行显示,一行都是一个完整的省份`geometry`信息,省份不再多行显示而重复;
+
+##### 关于dissolve#####
+from shapely.geometry import Point
+d = {
+    "col1": ["name1", "name2", "name1"],
+    "geometry": [Point(1, 2), Point(2, 1), Point(0, 1)],
+}
+d
+gdf = gpd.GeoDataFrame(d, crs=4326)
+gdf
+dissolved = gdf.dissolve('col1')
+dissolved  # doctest: +SKIP
+
+
+import matplotlib.pyplot as plt
+import geopandas as gpd
+import pandas as pd
+import numpy as np
+import libpysal
+import os
+## pandas读入xlsx数据,然后使用geopandas转化为shp格式
+os.chdir(r"E:\BaiduNetdiskWorkspace\郑大")
+os.system('start .')
+df = pd.read_excel("geff_markev.xlsx")
+gdf = gpd.GeoDataFrame(df,geometry=gpd.points_from_xy(df.longitude, df.latitude))
+gdf.crs = 'EPSG:4326'
+gdf.to_file('geff_markev.shp',driver='ESRI Shapefile',encoding='utf-8')
+
+
+
+
+
+
+
+
+
+
+## 读入地级市地图数据
+os.chdir(r"F:\Books\python\pySAL\columbus\地市4902")
+city = gpd.read_file('CN-shi-A.shp')  # 4902行合并到340行
+city.head()
+city['CityNameC'] # 该列是城市名称,有很多重复项,每个市不止一行;
+# 由于每行数据是单独的面，因此按照其城市列'CityNameC'融合
+city = city.dissolve(by='CityNameC')
+city
+
+## 385各地级市的还有重复,用dissolve
+os.chdir(r"E:\BaiduNetdiskWorkspace\郑大\地图数据\中国地级市地图-385")
+city = gpd.read_file('city.shp')  # 4902行合并到340行
+city.crs
+city.head()
+city['NAME'] # 该列是城市名称,有几个城市重复,每个市不止一行;
+# 由于每行数据是单独的面，因此按照其城市列'NAME'融合
+city = city.dissolve(by='NAME')
+city.to_file('city.shp',encoding='utf-8')

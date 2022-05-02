@@ -63,7 +63,7 @@
     # 空间权重矩阵；
 
 
-######################自己摸索安装最顺畅的一遍#################
+######################pysal安装:自己摸索安装最顺畅的一遍#################
 ## 老版本的python=3.8 兼容性更强：
 conda create -n geo python=3.8
 conda activate geo
@@ -201,10 +201,6 @@ import matplotlib.pyplot as plt
 
 
 ###################### Space weights ####################
-
-
-
-
 libpysal.weights.W(neighbors, weights=None, id_order=None, silence_warnings=False, ids=None)
 # neighbors:dict
 {'a':['b'],'b':['a','c'],'c':['b']} # 邻居，以字典的形式，a,b,c以及他们的邻居。
@@ -221,7 +217,7 @@ w = W(neighbors, weights) # 构造了一个权重矩阵对象w
 "%.3f"%w.pct_nonzero      
 w.pct_nonzero             # 非零权重的占比
 
-# 读取外部.gal数据
+# 读取外部.gal数据,gal为GeoDa构造空间权重矩阵的格式
 import libpysal
 w = libpysal.io.open(libpysal.examples.get_path("stl.gal")).read()
 w.neighbors
@@ -305,12 +301,57 @@ libpysal.weights.Kernel.from_dataframe(df)
 libpysal.weights.Kernel.from_file()
 
 
+############################空间马尔可夫###########################
 
 
 
+############################莫兰散点图###########################
+import matplotlib.pyplot as plt
+from libpysal.weights.contiguity import Queen
+from libpysal import examples
+import numpy as np
+import pandas as pd
+import geopandas as gpd
+import os
+import splot
 
+os.chdir(r"E:\BaiduNetdiskWorkspace\郑大")
+gdf = gpd.read_file('geff_space.shp')
 
+y = gdf['geff2005'].values
+w = Queen.from_dataframe(gdf)
+w.transform = 'r'
 
+from esda.moran import Moran
+moran = Moran(y, w)
+moran.I
+
+from splot.esda import moran_scatterplot
+fig, ax = moran_scatterplot(moran, aspect_equal=True)
+plt.show()
+
+# 画2005\2010\2015\2019四年的莫兰散点图:
+gdf = gpd.read_file('geff_space.shp')
+w = Queen.from_dataframe(gdf)
+w.transform = 'r'
+
+fig, axes = plt.subplots(2,2,figsize = (10,10)) 
+plt.rcParams['font.sans-serif'] = ['SimHei'] # 将无衬线字体设置为SimHei字体,前提SimHei字体已放入matplotlib字体文件夹;
+plt.rcParams['axes.unicode_minus'] = False   # 正常显示负号;
+lis = ['geff2005','geff2010','geff2015','geff2019']  # 循环画这四年的密度图
+lis1 = ['2005年','2010年','2015年','2019年']
+for i in range(2):
+    for j in range(2):
+        ax = axes[i,j]
+        ax.set_xlabel(" ")
+        index = lis[i*2+j]
+        y = gdf[index].values
+        moran = Moran(y, w)
+        moran_scatterplot(moran, ax=ax, aspect_equal=True)
+        ax.set_xlabel(" %s "%lis1[i*2+j],fontsize=13)
+        # ax.set_title(" %s "%lis1[i*2+j],fontsize=13)
+
+plt.show()
 
 
 
