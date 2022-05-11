@@ -5,7 +5,8 @@
 - 不能使用conda安装R语言：可能conda库上的R还不支持arm芯片
 - 安装后要安装[XQuartz](https://www.xquartz.org/index.html) :
   - `XQuartz` 就是 macOS 下的 X11，部分 Linux 程序安装时需使用到图形界面，可以选择这个[解决方案](https://www.wuweixin.com/2022/02/23/macos-install-and-using-xquartz/)。
-  - 注意：使用 X11（包括 tcltk）需要 XQuartz（版本 2.8.1 或更高版本）。将 macOS 升级到新的主要版本时，请始终重新安装 XQuartz。
+  - 注意：使用 X11（包括 tcltk）需要 XQuartz（版本 2.8.1 或更高版本）。
+  - 将 macOS 升级到新的主要版本时，请始终重新安装 XQuartz。
   - <div align="center"> <img src="media/mac_r.jpg" width="80%" /> </div>
 
 - `install.packages('devtools')`:安装包失败，提示：`Library not loaded: /opt/local/lib/libSM.6.dylib`等，安装上面的`XQuartz`后即可解决
@@ -28,3 +29,6 @@ IRkernel::installspec()
     - 需要运行`sudo /Library/Frameworks/R.framework/Resources/bin/R`才能进入`R`终端；
     - 再次运行`IRkernel::installspec()`不再有上图提示的错误；
 
+## 三、快捷键
+- when expression
+`editorTextFocus && !findInputFocussed && !jupyter.ownsSelection && !notebookEditorFocused && !replaceInputFocussed && editorLangId == 'python'`

@@ -2,6 +2,7 @@
     ## 参考：https://www.cnblogs.com/pinard/p/6632399.html#undefined
     ## 初始状态分布矩阵S1 = [0.3, 0.4, 0.3]，即第一天进进在玩的概率是30%，在学的概率是40%，在睡觉的概率是30%，我们以此来计算100天后，也就是第一百天进进在玩or学or睡觉的概率分布。
 
+from base64 import decode
 import numpy as np
 
 matrix = np.matrix([[0.05, 0.75, 0.2],
@@ -202,17 +203,22 @@ import pandas as pd
 import numpy as np
 import libpysal
 import os
-os.chdir(r"E:\BaiduNetdiskWorkspace\郑大")
-os.system('start .')
+os.chdir(r"/users/zhulu/files/data/郑大")
 ## geopandas读入数据转化为shp格式
 df = pd.read_excel("geff_markev.xlsx")
 gdf = gpd.GeoDataFrame(df,geometry=gpd.points_from_xy(df.longitude, df.latitude))
 gdf.crs = 'EPSG:4326'
 gdf.to_file('geff_markev.shp',driver='ESRI Shapefile',encoding='utf-8')
+## geopandas读入数据转化为shp格式-0507
+df = pd.read_excel("geff_space_0507.xlsx")
+gdf = gpd.GeoDataFrame(df,geometry=gpd.points_from_xy(df.longitude, df.latitude))
+gdf.crs = 'EPSG:4326'
+gdf.to_file('geff_space_0507.shp',driver='ESRI Shapefile',encoding='utf-8')
+# 再使用shp文件生成权重矩阵
 
 
 ## 读入原始excel数据，先不考虑空间信息的马尔可夫转换矩阵
-f = libpysal.io.open("geff_markev.csv")    # 279市*15年
+f = libpysal.io.open("geff_markev.csv")    # 279市*15年 使用sublime textgb18030转为utf8
 pci = np.array([f.by_col["geff"+str(y)] for y in range(2005,2020)])
 print(pci.shape)  # 15年*279市
 
@@ -273,14 +279,22 @@ plt.show()
 
 
 ## 计算权重指数,并画出历年莫兰指数折线图
+import geopandas as gpd
 from esda.moran import Moran
 import matplotlib.pyplot as plt
+from libpysal.weights.contiguity import Queen
+from libpysal.weights import W,full
+import os 
+os.getcwd()
+os.chdir(r"/users/zhulu/files/data/郑大/")
 gdf = gpd.read_file('geff_markev.shp')
 w = Queen.from_dataframe(gdf)
+wf,ids = full(w)
 w.transform = 'r'
 
 mits = [Moran(cs, w) for cs in pci]  # pci 15*279，15行，每行279个市的空间自相关情况；
 res = np.array([(mi.I, mi.EI, mi.seI_norm, mi.sim[974]) for mi in mits]) # 可以得到15个莫兰指数；
+print(res[:,0]) # 打印出历年莫兰指数
 years = np.arange(2005,2020)
 fig, ax = plt.subplots(nrows=1, ncols=1,figsize = (10,5) )
 ax.plot(years, res[:,0], label='Moran\'s I') # 历年莫兰指数的散点图；
@@ -292,5 +306,39 @@ ax.set_xlim([2005,2019])
 ax.legend()
 plt.show()
 
+# 读取shp文件，生成权重矩阵
+os.chdir(r"/users/zhulu/files/data/郑大/")
+gdf = gpd.read_file('geff_space_0507.shp')
+w1 = Queen.from_dataframe(gdf)
+w1
+wf,ids = full(w1)
+wf
+type(wf)
+ids 
+len(wf)
+wf.shape # 275*275
+wf[0,:].shape
+wf[:,0].shape
+df = pd.DataFrame(wf)
+df.to_csv('w1.csv')
 
+# 历年莫兰指数及检验
+import geopandas as gpd
+from esda.moran import Moran
+import matplotlib.pyplot as plt
+from libpysal.weights.contiguity import Queen
+from libpysal.weights import W,full
+import os 
+os.chdir(r"/users/zhulu/files/data/郑大/")
+f = libpysal.io.open("geff_markev.csv")    # 279市*15年 使用sublime textgb18030转为utf8
+pci = np.array([f.by_col["geff"+str(y)] for y in range(2005,2020)])
 
+gdf = gpd.read_file('geff_markev.shp')
+w = Queen.from_dataframe(gdf)
+w.transform = 'r'
+
+mits = [Moran(cs, w) for cs in pci]  # pci 15*279，15行，每行279个市的空间自相关情况；
+res = np.array([(mi.I, mi.p_norm) for mi in mits]) # 可以得到15个莫兰指数；
+res
+df = pd.DataFrame(res)
+df.to_excel('Moran_test.xlsx')

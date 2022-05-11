@@ -314,19 +314,19 @@ import pandas as pd
 import geopandas as gpd
 import os
 import splot
+from esda.moran import Moran
+from splot.esda import moran_scatterplot
 
-os.chdir(r"E:\BaiduNetdiskWorkspace\郑大")
+os.chdir(r"/users/zhulu/files/data/郑大")
 gdf = gpd.read_file('geff_space.shp')
 
 y = gdf['geff2005'].values
 w = Queen.from_dataframe(gdf)
 w.transform = 'r'
 
-from esda.moran import Moran
 moran = Moran(y, w)
 moran.I
 
-from splot.esda import moran_scatterplot
 fig, ax = moran_scatterplot(moran, aspect_equal=True)
 plt.show()
 
@@ -336,7 +336,7 @@ w = Queen.from_dataframe(gdf)
 w.transform = 'r'
 
 fig, axes = plt.subplots(2,2,figsize = (10,10)) 
-plt.rcParams['font.sans-serif'] = ['SimHei'] # 将无衬线字体设置为SimHei字体,前提SimHei字体已放入matplotlib字体文件夹;
+plt.rcParams['font.sans-serif']=['Songti SC'] # 将无衬线字体设置为Songti SC字体;
 plt.rcParams['axes.unicode_minus'] = False   # 正常显示负号;
 lis = ['geff2005','geff2010','geff2015','geff2019']  # 循环画这四年的密度图
 lis1 = ['2005年','2010年','2015年','2019年']

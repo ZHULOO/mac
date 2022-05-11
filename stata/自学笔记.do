@@ -1168,7 +1168,18 @@ reg price weight
 estimates store m2
 reg2docx m1 m2 using regresult.docx
 
-
+***post命令
+tempname sim 			//临时生成一个sim文件；
+postfile `sim' mean var using results, replace //将mean，var名称post到sim，然后使用results保存最终结果；
+forvalues i = 1/100 {
+	drop _all
+	set obs 110
+	generate z = exp(rnormal())
+	summarize z
+	post `sim' (r(mean)) (r(Var)) //将返回结果r(mean)和r(var)post到sim；
+	}
+postclose `sim'
+use results,clear
 
 
 
