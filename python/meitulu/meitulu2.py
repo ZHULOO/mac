@@ -8,8 +8,8 @@ import sys
 
 # 定义函数:得到专辑名称:
 def get_user(url):
-    headers = {'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Mobile Safari/537.36 Edg/96.0.1054.62',
-    'cookie':'UM_distinctid=17bf81bb0772ae-07ff0e6c48d262-57341040-240000-17bf81bb078b2b; PHPSESSID=isijdiah8msh88rln1tgqp0i0j; CNZZDATA1257039673=1055518379-1615096700-%7C1641000419; uid=46423; name=frozenevil; leixing=3'}
+    headers = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36 Edg/101.0.1210.39',
+    'cookie':'PHPSESSID=4ll5opa4vctbst7pmkechbothe; __51vcke__Je64MI06Q1Neac4F=eb961528-bc14-5842-8356-23fdce676cce; __51vuft__Je64MI06Q1Neac4F=1651483931802; uid=46423; name=frozenevil; leixing=3; __51uvsct__Je64MI06Q1Neac4F=3; __vtins__Je64MI06Q1Neac4F=%7B%22sid%22%3A%20%220f0e8a02-5ff8-5079-a058-5a04f4c8f722%22%2C%20%22vd%22%3A%2019%2C%20%22stt%22%3A%20841042%2C%20%22dr%22%3A%20120152%2C%20%22expires%22%3A%201652351048626%2C%20%22ct%22%3A%201652349248626%7D'}
     urllib3.disable_warnings()
     r = requests.get(url, headers=headers, timeout=10, verify = False)
     r.encoding = r.status_code
@@ -21,8 +21,8 @@ def get_user(url):
 
 # 定义函数:自动获取每张图片链接:不再像meitulu1中根据专辑编码和图片数量生成图片链接；
 def get_address(url):
-    headers = {'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Mobile Safari/537.36 Edg/96.0.1054.62',
-    'cookie':'UM_distinctid=17bf81bb0772ae-07ff0e6c48d262-57341040-240000-17bf81bb078b2b; PHPSESSID=isijdiah8msh88rln1tgqp0i0j; CNZZDATA1257039673=1055518379-1615096700-%7C1641000419; uid=46423; name=frozenevil; leixing=3'}
+    headers = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36 Edg/101.0.1210.39',
+    'cookie':'PHPSESSID=4ll5opa4vctbst7pmkechbothe; __51vcke__Je64MI06Q1Neac4F=eb961528-bc14-5842-8356-23fdce676cce; __51vuft__Je64MI06Q1Neac4F=1651483931802; uid=46423; name=frozenevil; leixing=3; __51uvsct__Je64MI06Q1Neac4F=3; __vtins__Je64MI06Q1Neac4F=%7B%22sid%22%3A%20%220f0e8a02-5ff8-5079-a058-5a04f4c8f722%22%2C%20%22vd%22%3A%2019%2C%20%22stt%22%3A%20841042%2C%20%22dr%22%3A%20120152%2C%20%22expires%22%3A%201652351048626%2C%20%22ct%22%3A%201652349248626%7D'}
     urllib3.disable_warnings()
     r = requests.get(url, headers=headers,timeout=10,verify = False)
     r.encoding = r.status_code
@@ -36,9 +36,8 @@ def get_address(url):
 
 # 定义函数:得到每个图片的二进制信息:
 def get_content(url):
-    try:
-        headers = {'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Mobile Safari/537.36 Edg/96.0.1054.62',
-        'cookie':'UM_distinctid=17bf81bb0772ae-07ff0e6c48d262-57341040-240000-17bf81bb078b2b; PHPSESSID=isijdiah8msh88rln1tgqp0i0j; CNZZDATA1257039673=1055518379-1615096700-%7C1641000419; uid=46423; name=frozenevil; leixing=3'}
+    try: # 需要更详细的头部信息才能请求到图片内容,多添加一个referer字段即可；
+        headers = {'cookie': 'PHPSESSID=4ll5opa4vctbst7pmkechbothe; __51vcke__Je64MI06Q1Neac4F=eb961528-bc14-5842-8356-23fdce676cce; __51vuft__Je64MI06Q1Neac4F=1651483931802; uid=46423; name=frozenevil; leixing=3; __51uvsct__Je64MI06Q1Neac4F=5; __vtins__Je64MI06Q1Neac4F=%7B%22sid%22%3A%20%222aff9062-2efd-5808-bdec-8696e295fefa%22%2C%20%22vd%22%3A%205%2C%20%22stt%22%3A%2023931%2C%20%22dr%22%3A%206412%2C%20%22expires%22%3A%201652362023295%2C%20%22ct%22%3A%201652360223295%7D','referer': 'https://www.tujidao.com','user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36 Edg/101.0.1210.39'}
         urllib3.disable_warnings()
         r = requests.get(url, headers=headers,timeout=10,verify = False)
         if r.status_code == 200:
@@ -50,13 +49,13 @@ def get_content(url):
         return None
 
 def down_img(dload,user):
-    dirpath = r'G:/vip/{0}'.format(user) # 将下载目录更改到移动硬盘G:/vip
+    dirpath = r'/Users/zhulu/Files/pics/{0}'.format(user) # 将下载目录更改到移动硬盘G:/vip
     if not os.path.exists(dirpath):
         os.mkdir(dirpath)
     for i in range(0,len(dload)):
         try:
             content = get_content(dload[i])
-            file_path = r'G:/vip/{0}/{1}.jpg'.format(user, i+1)
+            file_path = r'/Users/zhulu/Files/pics/{0}/{1}.jpg'.format(user, i+1)
             if not os.path.exists(file_path):
                 with open(file_path, 'wb') as f:
                     print('第{0}张下载完成： '.format(i+1) + dload[i])
