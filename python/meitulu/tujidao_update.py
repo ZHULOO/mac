@@ -54,8 +54,12 @@ for url in urls:
 
 
 
-
-
+#################################单独下载某一页上面的几十张图片############################
+url = "https://www.tujidao01.com/a/?id=53000"
+python meitulu2.py "https://www.tujidao01.com/a/?id=53000"
+# 或者循环：
+for i in address:
+    os.system("python meitulu2.py {0}".format(i))
 
 
 

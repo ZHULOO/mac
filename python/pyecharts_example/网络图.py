@@ -6,7 +6,7 @@ from pyecharts.charts import Graph, Page
 from pyecharts.faker import Collector
 
 C = Collector()
-
+C.funcs()
 
 @C.funcs
 def graph_base() -> Graph:
@@ -31,7 +31,26 @@ def graph_base() -> Graph:
     )
     return c
 
+# '''
+nodes = [
+    {"name": "结点1", "symbolSize": 10},
+    {"name": "结点2", "symbolSize": 20},
+    {"name": "结点3", "symbolSize": 30},
+    {"name": "结点4", "symbolSize": 40},
+    {"name": "结点5", "symbolSize": 50},
+    {"name": "结点6", "symbolSize": 40},
+    {"name": "结点7", "symbolSize": 30},
+    {"name": "结点8", "symbolSize": 20},
+]
+links = []
+for i in nodes:
+    for j in nodes:
+        links.append({"source": i.get("name"), "target": j.get("name")})
+nodes[0]
+links
+len(links)
 
+# '''
 
 
 @C.funcs
@@ -112,6 +131,16 @@ def graph_les_miserables():
         )
     )
     return c
+
+os.chdir("/users/zhulu/files/mygit/python/pyecharts_example")
+with open(
+    os.path.join("fixtures", "les-miserables.json"), "r", encoding="utf-8"
+) as f:
+    j = json.load(f)
+nodes = j["nodes"]
+links = j["links"]
+categories = j["categories"]
+
 
 
 @C.funcs

@@ -1,5 +1,5 @@
 # 三大利器
-# 一,装饰器
+# 一,装饰器：不对原有函数改动的情况下，适当改动函数的功能：
 def deco1(func):
     def wrapper(x):
         print("前面加上装饰器的效果")
@@ -25,7 +25,7 @@ def deco4(func):
     return wrapper
 
 
-@deco2                  # 一般是按照装饰器顺序执行的,但是deco2实在函数之后运行;
+@deco2                  # 一般是按照装饰器顺序执行的,但是deco2是在函数之后运行;
 def func1():
     print("我是函数1")
 
@@ -50,6 +50,18 @@ func3("hello","world")
 print("==============================")
 func4("hello","world",a=1,b=2,c=3)
 
+def deco(func5):
+    def wrapper(a,b):
+        c=func5(a,b)
+        print(c*c)
+    return wrapper
+
+
+@deco
+def func5(a,b):
+    return(a+b)
+
+func5(1,3)
 
 # 迭代器
 '''

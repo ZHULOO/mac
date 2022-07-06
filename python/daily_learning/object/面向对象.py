@@ -1,3 +1,4 @@
+
 """
 面向对象编程：类、对象
 Objece Oriented Programming-->OOP
@@ -28,7 +29,7 @@ class Person:
 
 # 实例化（具体的个人）：
 luxp = Person()
-wxd = Person()
+wxd = Person("wxd","女","28")
 
 # 类的属性：
 # “实例.属性名” 的形式就可以调用对象的属性：
@@ -82,8 +83,10 @@ luxp.__dict__ # 通过“实例.属性名”修改了属性以后，相当于在
 luxp.say() # 结果如下：
 <__main__.Person object at 0x000001B4C2908610> 
 hello world
+
 wxd.say()
-0x000001B4C29309D0 # 输入查看内存地址
+
+0x000001B4C29309D0 # 输入查看类方法的内存地址
 0x000001B4C2908610
 id(luxp) # 可以看到luxp的内存地址和类方法定义中的self是一样的，这就表示他们是同一个对象，
 id(wxd)

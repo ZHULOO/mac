@@ -255,3 +255,8 @@
         "when": "editorTextFocus && editorLangId == 'rmd'"
     },
 ```
+
+## 八、mac下安装
++ 不用安装，直接将下载文件拷贝到应用程序下即可在应用中心显示；
++ 配置文件保存在`/Users/zhulu/Library/Application Support/Code/User`下；
++ 

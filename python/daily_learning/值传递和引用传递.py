@@ -186,3 +186,25 @@ a[1].append(4)
 a,c,d
 id(a),id(c),id(d)
 id(a[1]),id(c[1]),id(d[1]) 
+# b += 5和b = b + 5的区别：
+# 当b是一个可变对象时，例如list，b += 5相当于在原内存中修改，id地址不变，
+import random
+import numpy as np
+a = np.array(np.arange(0, 10))
+print(a,id(a))
+b = a[2:4] 
+print(b,id(b))
+b += 5
+print(b,id(b)) # 此时b的值变化，但b的id不变，a的值也跟随b发生了变化，但是a的id也未变化，不用开辟新的内存空间来存放变化后的b和a，节省内存；
+print(a,id(a))
+
+# 和上面对比，b = b + 5，开辟了新的内存空间来存储b，b的值变化以后，id也发生了变化，
+import random
+import numpy as np
+a = np.array(np.arange(0, 10))
+print(a,id(a))
+b = a[2:4] 
+print(b,id(b))
+b = b + 5 
+print(b,id(b)) # b的值变化以后，id也发生了变化，开辟了新的内存空间来存储修改后的b，更加浪费内存；
+print(a,id(a)) # 但此时a的值和id均未变化；

@@ -103,6 +103,45 @@ seaborn
 # 空行与代码缩进不同，空行并不是Python语法的一部分。书写时不插入空行，Python解释器运行也不会出错。但是空行的作用在于分隔两段不同功能或含义的代码，
 # 便于日后代码的维护或重构。
 # 记住：空行也是程序代码的一部分。
+'''print函数'''
+print(*objects, sep=' ', end='\n', file=sys.stdout, flush=False)
+# 参数
+# objects -- 复数，表示可以一次输出多个对象。输出多个对象时，需要用 , 分隔。
+# sep -- 用来间隔多个对象，默认值是一个空格。
+# end -- 用来设定以什么结尾。默认值是换行符 \n，我们可以换成其他字符串。
+# file -- 要写入的文件对象。
+# flush -- 输出是否被缓存通常决定于 file，但如果 flush 关键字参数为 True，流会被强制刷新。
+print(1)  
+print("Hello World")  
+a = 1
+b = 'runoob'
+print(a,b)
+print("aaa""bbb")
+print("aaa""bbb",end=",")
+print("aaa","\n","bbb")
+print("aaa","\t","bbb")
+print("aaa","\r","bbb")
+print("aaa""bbb",sep=".")
+print("aaa","bbb")
+print("aaa","bbb",sep=".")
+
+print("www","runoob","com",sep=".")  # 设置间隔符
+# 制作一个进度条：
+import time
+print("Loading",end = "")
+for i in range(20):
+    print(".",end = '',flush = True)
+    time.sleep(0.5)
+# 乘法表
+for i in range(1, 10):
+    for j in range(1, i+1):
+        print(f'{j}x{i}={i*j}\t', end=',')
+    print("he")
+
+for i in range(10):
+    for j in range(5):
+        print(j,end="") # end表示在后边连续输出，打断后将从头输出；
+    print("*")
 
 '''变量类型'''
 # 一,字符串:
@@ -196,7 +235,6 @@ cmp(item1, item2)   比较两个值，-1 小于/0 相等/1 大于      Python 3.
 字典是一个无序的集合,是使用键值对保存数据;
 
 10.运算符:
-
 运算符:           Python表达式:             结果:                           描述:       支持的数据类型:
 +               [1, 2] + [3, 4]         [1, 2, 3, 4]                    合并          字符串、列表、元组
 *               ["Hi!"] * 4             ['Hi!', 'Hi!', 'Hi!', 'Hi!']    重复          字符串、列表、元组
@@ -215,7 +253,19 @@ in 和 not in 被称为成员运算符
 in      如果在指定的序列中找到值返回 True，否则返回 False          3 in (1, 2, 3) 返回 True
 not in  如果在指定的序列中没有找到值返回 True，否则返回 False       3 not in (1, 2, 3) 返回 False
 注意：在对字典操作时，判断的是字典的键.
+'''
+a = 3
+c = 7
+print(id(a))
+print(id(c))
+c+=a  # c=c+a
+print(c)
+print(id(c))
+d=+a
+print(d)
 
+
+'''
 11.完整的for循环语法:
 for 变量 in 集合:
 
@@ -479,13 +529,13 @@ for row in ls:#先遍历行
 '''词云wordcloud库的使用'''
 pip install wordcloud
 w=wordcloud.WordCloud()#width、height参数控制生成图片的宽度和高度，min_font_size()\max_font_size()设置最大和最小字字号
-                       #font_step（）控制最大和最小字号步进间隔。font-path="msyh.ttc"设置字体。
-                       #max_words=20指定显示的单词数量，stop_words=("")排除不显示的单词
-                       #mask参数控制词云显示的形状，需要配合imread（）函数
-                       from scipy.misc import imread
-                       mk=imread("pic.png")
-                       w=wordcloud.WordCloud(mask=mk)
-                       #background_color="white"指定词云图片背景颜色，默认为黑色
+#font_step（）控制最大和最小字号步进间隔。font-path="msyh.ttc"设置字体。
+#max_words=20指定显示的单词数量，stop_words=("")排除不显示的单词
+#mask参数控制词云显示的形状，需要配合imread（）函数
+from scipy.misc import imread
+mk=imread("pic.png")
+w=wordcloud.WordCloud(mask=mk)
+#background_color="white"指定词云图片背景颜色，默认为黑色
 w.generate(txt)#向w对象中加载文本txt，以空格分隔，统计单词出现的次数。
 w.to_file(filename)#将词云输出为图像文件，png或jpg格式
 wordcloud#英文应用实例
@@ -860,13 +910,13 @@ print('C:\some\name') #此处\n表示转义,换行;
 print(r'C:\some\name') #此处加r表示\不再转义;
 print("""\
 Usage: thingy [OPTIONS]
-     -h                        Display this usage message
-     -H hostname               Hostname to connect to
+    -h                        Display this usage message
+    -H hostname               Hostname to connect to
 """)
 print("""
 Usage: thingy [OPTIONS]\
-     -h                        Display this usage message\
-     -H hostname               Hostname to connect to\
+    -h                        Display this usage message\
+    -H hostname               Hostname to connect to\
 """)
 '''流程控制:'''
 a,b=0,1

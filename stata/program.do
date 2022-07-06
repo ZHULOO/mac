@@ -206,8 +206,8 @@ end
 
 ***两种stata参数方式：位置式，语法式；
 //args does the first. The first argument is assigned to macroname1, the second to macroname2,
-and so on. In the program, you later refer to the contents of the macros by enclosing their names in
-single quotes: `macroname1', `macroname2', : : : :
+//and so on. In the program, you later refer to the contents of the macros by enclosing their names in
+//single quotes: `macroname1', `macroname2', : : : :
 program myprog
 	version 17.0
 	args varname dof beta
@@ -215,7 +215,7 @@ program myprog
 	: : :
 end
 //syntax does the second. You specify the new command’s syntax on the syntax command; for
-instance, you might code
+//instance, you might code
 program myprog
 	version 17.0
 	syntax varlist [if] [in] [, DOF(integer 50) Beta(real 1.0)]

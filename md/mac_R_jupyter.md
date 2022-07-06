@@ -32,3 +32,37 @@ IRkernel::installspec()
 ## 三、快捷键
 - when expression
 `editorTextFocus && !findInputFocussed && !jupyter.ownsSelection && !notebookEditorFocused && !replaceInputFocussed && editorLangId == 'python'`
+```
+ {
+        "key": "alt+=",
+        "command": "type",
+        "args": {
+            "text":" -> "
+        },
+        "when": "editorTextFocus && editorLangId == 'r'|| editorTextFocus && editorLangId == 'rmd'"
+    },
+    {
+        "key": "alt+-",
+        "command": "type",
+        "args": {
+            "text":" <- "
+        },
+        "when": "editorTextFocus && editorLangId == 'r'|| editorTextFocus && editorLangId == 'rmd'"
+    },
+    {
+        "key": "alt+r",
+        "command": "type",
+        "args": {
+            "text":" |> " # "|>"符号：
+        },
+        "when": "editorTextFocus && editorLangId == 'r'|| editorTextFocus && editorLangId == 'rmd'"
+    },
+    {
+        "key": "alt+m",
+        "command": "type",
+        "args": {
+            "text":" %>% "
+        },
+        "when": "editorTextFocus && editorLangId == 'r'|| editorTextFocus && editorLangId == 'rmd'"
+    },
+```

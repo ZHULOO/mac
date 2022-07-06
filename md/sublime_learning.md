@@ -60,10 +60,11 @@
 
 ### 2.1 安装`StataEditor`插件
 
-### 2.2 插件设置
+### 2.2 插件设置(win10)
 + StataEditor的settings中配置本机stata目录；
 + 注册stata `cmd`窗口输入`StataMP-64.exe /Register`注册，`StataMP-64.exe /Regserver`解除注册；
 
+### 2.3 mac下直接安装`Stata Editor for macOS`插件即可；
 
 ## 三、配置md
 
