@@ -1,8 +1,10 @@
-# 马尔可夫
+##################### 马尔可夫 ###################
     ## 参考：https://www.cnblogs.com/pinard/p/6632399.html#undefined
     ## 初始状态分布矩阵S1 = [0.3, 0.4, 0.3]，即第一天进进在玩的概率是30%，在学的概率是40%，在睡觉的概率是30%，我们以此来计算100天后，也就是第一百天进进在玩or学or睡觉的概率分布。
 
 import numpy as np
+from sklearn.preprocessing import scale
+from sympy import true
 
 matrix = np.matrix([[0.05, 0.75, 0.2],
                     [0.8, 0.05, 0.15],
@@ -300,5 +302,7 @@ ax.set_title("历年各城市绿色发展效率空间自相关系数图",fontdic
 ax.set_xlim([2005,2019])
 plt.show()
 
-
+# MCMC
+# MH
+# GIBBS
 

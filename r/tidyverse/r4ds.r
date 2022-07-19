@@ -500,41 +500,109 @@ diamonds2 <- diamonds %>%
 
 diamonds2 <- diamonds %>% 
   mutate(y = ifelse(y < 3 | y > 20, NA, y))
-# ifelse()函数
-x <- c(6:-4)
-sqrt(x)  #- gives warning
-sqrt(ifelse(x >= 0, x, NA))  # no warning
 
-## Note: the following also gives the warning !
-ifelse(x >= 0, sqrt(x), NA)
+ggplot(data = diamonds2, mapping = aes(x = x, y = y)) +
+  geom_point() # ggplot默认会忽略缺失值，使用is.na = TRUE不显示忽略缺失值警告；
+# 比较有无缺失值观测的区别
+nycflights13::flights %>% 
+  mutate(
+    cancelled = is.na(dep_time),
+    sched_hour = sched_dep_time %/% 100,
+    sched_min = sched_dep_time %% 100,
+    sched_dep_time = sched_hour + sched_min / 60
+  ) %>% 
+  ggplot(mapping = aes(sched_dep_time)) +
+    geom_freqpoly(
+      mapping = aes(color = cancelled),
+      binwidth = 1/4
+    )
 
+nycflights13::flights %>% 
+  mutate(
+    cancelled = is.na(dep_time),
+    sched_hour = sched_dep_time %/% 100,
+    sched_min = sched_dep_time %% 100,
+    sched_dep_time = sched_hour + sched_min / 60
+  ) %>% 
+  .$cancelled
 
-## ifelse() strips attributes
-## This is important when working with Dates and factors
-x <- seq(as.Date("2000-02-29"), as.Date("2004-10-04"), by = "1 month")
-## has many "yyyy-mm-29", but a few "yyyy-03-01" in the non-leap years
-y <- ifelse(as.POSIXlt(x)$mday == 29, x, NA)
-head(y) # not what you expected ... ==> need restore the class attribute:
-class(y) <- class(x)
-y
-## This is a (not atypical) case where it is better *not* to use ifelse(),
-## but rather the more efficient and still clear:
-y2 <- x
-y2[as.POSIXlt(x)$mday != 29] <- NA
-## which gives the same as ifelse()+class() hack:
-stopifnot(identical(y2, y))
+## 5.5 相关变动
+### 5.5.1 分类变量与连续变量
+ggplot(data = diamonds, mapping = aes(x = price)) +
+  geom_freqpoly(mapping = aes(color = cut), binwidth = 500)
+# 难以看出不同cut组的分布形状的差别，因为各组数量差别很大
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = cut))
+# 未来让各组具有可比性，要改变y轴的显示内容，改为密度而不是计数
+ggplot(data = diamonds, 
+  mapping = aes(x = price, y = ..density..)
+  ) +
+  geom_freqpoly(mapping = aes(color = cut), binwidth = 500)
+# 箱线图
+ggplot(data = diamonds, mapping = aes(x = cut, y = price)) +
+  geom_boxplot()
+# 分类变量进行排序：
+ggplot(data = mpg, mapping = aes(x = class, y = hwy)) +
+  geom_boxplot()
 
+ggplot(data = mpg) +
+  geom_boxplot(
+    mapping = aes(
+      x = reorder(class, hwy, FUN = median),
+      y = hwy
+    )
+  )
+# 交换坐标轴：
+ggplot(data = mpg) +
+  geom_boxplot(
+    mapping = aes(
+      x = reorder(class, hwy, FUN = median),
+      y = hwy
+    )
+  ) +
+  coord_flip()
 
-## example of different return modes (and 'test' alone determining length):
-yes <- 1:3
-no  <- pi^(1:4)
-utils::str( ifelse(NA,    yes, no) ) # logical, length 1
-utils::str( ifelse(TRUE,  yes, no) ) # integer, length 1
-utils::str( ifelse(FALSE, yes, no) ) # double,  length 1
+### 5.5.2 两个分类变量
+# 计算两个分类变量所有组合中的观测数：
+ggplot(data = diamonds) +
+  geom_count(mapping = aes(x = cut, y = color))
+# 或者先使用dplyr中的count函数计数后再画图
+diamonds %>% 
+  count(color, cut) %>% 
+  ggplot(mapping = aes(x = color, y = cut)) +
+    geom_tile(mapping = aes(fill = n))
 
+### 5.5.3 两个连续变量
+ggplot(data = diamonds) +
+  geom_point(
+    mapping = aes(x = carat, y = price),
+    alpha = 1 / 100
+    )
+# 使用geom_bin2d()和geom_hex()函数在两个维度上进行分箱
+ggplot(data = smaller) +
+  geom_bin2d(mapping = aes(x = carat, y = price))
 
+install.packages("hexbin")
+ggplot(data = smaller) +
+  geom_hex(mapping = aes(x = carat, y = price))
 
+# 也可以对carat分组后生成箱线图
+ggplot(data = smaller, mapping = aes(x = carat, y = price)) +
+  geom_boxplot(mapping = aes(group = cut_width(carat, 0.4)))
+ggplot(data = smaller, mapping = aes(x = carat, y = price)) +
+  geom_boxplot(mapping = aes(group = cut_width(carat, 0.4)), varwidth = TRUE) # varwidth表示箱体宽度与观测数量成正比
 
+## 5.6 模式和模型
+ggplot(data = faithful) +
+  geom_point(mapping = aes(x = eruptions, y = waiting))
+library(modelr)
+mod <- lm(log(price) ~ log(carat), data = diamonds)
+diamonds2 <- diamonds %>% 
+  add_residuals(mod) %>% 
+  mutate(resid = exp(resid))
+
+ggplot(data = diamonds2) +
+  geom_point(mapping = aes(x = carat, y = resid))
 
 
 # 第7章 使用tibble实现简单数据框
