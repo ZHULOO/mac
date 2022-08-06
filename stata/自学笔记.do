@@ -1181,6 +1181,13 @@ forvalues i = 1/100 {
 postclose `sim'
 use results,clear
 
+***xtile
+ // 根据指定的百分位数定义类别变量，例如把25%定义为1,50%定义为2等等。
+***ptile
+
+***astile
+//astile比 state 官方提供的xtile命令处理速度更快。 它的高效性在数据集较大或者当分组类别被多次创建时更加明显，比如说，我们可能需要根据每个年份或者月份分别创建分组。
+
 
 
 

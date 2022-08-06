@@ -26,7 +26,7 @@ def get_pics(url):
         os.system("python meitulu2.py {0}".format(i))
 
 
-# 网页层次：某合集--》多页网页 --》每页下面多个专辑--》每个专辑多张图片
+# 网页层次：某合集（花漾、秀人等）包含多页 -> 每页下面多个专辑（某个模特的某一期）-> 每个专辑多张图片
 ####################################下载某合集#######################################################
 ###先运行上面的函数,再通过一下循环下载该合集的前n页:
 url = "https://www.tujidao.com/x/?id=101&page=9" # id = 101 指artgravia合集，下面有9页内容，每页下面有20个专辑，每个专辑下有多张图片；
@@ -56,7 +56,7 @@ for url in urls:
 
 #################################单独下载某一页上面的几十张图片############################
 url = "https://www.tujidao01.com/a/?id=53000"
-python meitulu2.py "https://www.tujidao01.com/a/?id=53000"
+python meitulu2.py "https://www.tujidao01.com/a/?id=53000"  # 必须加引号
 # 或者循环：
 for i in address:
     os.system("python meitulu2.py {0}".format(i))
