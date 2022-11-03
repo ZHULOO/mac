@@ -41,6 +41,7 @@ gen x4 = round(100 + 7*X + rnormal(0, 10))
 drop X
 sem (x1 x2 x3 x4 <- X) 
 
+
 //大样本，此时x4的系数6.99781很接近于真实值7了；
 clear
 set seed 83216

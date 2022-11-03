@@ -302,7 +302,7 @@ ax.set_title("历年各城市绿色发展效率空间自相关系数图",fontdic
 ax.set_xlim([2005,2019])
 plt.show()
 
-# MCMC
+# MCMC,后续参考ipynb文件夹；
 # MH
 # GIBBS
 

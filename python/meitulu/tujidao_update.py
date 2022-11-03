@@ -16,7 +16,7 @@ def get_add(url):
     text2 = text1[0].find_all('li')
     address = []
     for i in text2:
-        address.append('https://www.tujidao.com'+i.a['href'])
+        address.append('https://www.tujidao03.com'+i.a['href'])
     return address
 
 # 定义函数:url为某合集下的一个网页,下面自动爬取该页下所有专辑的图片：
@@ -41,7 +41,7 @@ for url in urls:
 
 
 
-####################################下载更新页#######################################################
+####################################下载更新的前n页#############################################
 ###先运行上面的函数,再通过一下循环下载前n页的更新:
 os.getcwd()
 os.chdir("/Users/zhulu/Files/MyGit/python/meitulu")
@@ -52,23 +52,18 @@ for i in range(14,27): #下载更新第14至26页；
 for url in urls:
     get_pics(url)
 
+####################################下载某一页上面的多个专辑的每个专辑的图片#########################
+os.getcwd()
+os.chdir("/Users/zhulu/Files/MyGit/python/meitulu")
+url = "https://www.tujidao03.com/x/?id=101"
+url = "https://www.tujidao03.com/x/?id=113"  # DJAWA图集
+url = "https://www.tujidao03.com/sousu/?s0=PURE+MEDIA"  # pure media图集
+get_pics(url)
 
-
-#################################单独下载某一页上面的几十张图片############################
+#################################单独下载某一页(单个专辑)上面的几十张图片############################
 url = "https://www.tujidao01.com/a/?id=53000"
 python meitulu2.py "https://www.tujidao01.com/a/?id=53000"  # 必须加引号
 # 或者循环：
 for i in address:
     os.system("python meitulu2.py {0}".format(i))
 
-
-
-
-
-
-
-# 更新页面网址： https://www.tujidao.com/u/?action=gengxin&page=2
-url = 'https://www.tujidao.com/x/?id=101&page=1'            # ARTGRAVIA图集
-
-url = 'https://www.tujidao.com/u/?action=gengxin&page=33'   # 更新页网址
-get_pics(url)

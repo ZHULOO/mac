@@ -49,13 +49,13 @@ def get_content(url):
         return None
 
 def down_img(dload,user):
-    dirpath = r'/Users/zhulu/Files/pics/{0}'.format(user) # 将下载目录更改到移动硬盘G:/vip
+    dirpath = r'/Volumes/My Passport/vip/pics/{0}'.format(user) # 将下载目录更改到移动硬盘/Volumes/My Passport/vip
     if not os.path.exists(dirpath):
         os.mkdir(dirpath)
     for i in range(0,len(dload)):
         try:
             content = get_content(dload[i])
-            file_path = r'/Users/zhulu/Files/pics/{0}/{1}.jpg'.format(user, i+1)
+            file_path = r'/Volumes/My Passport/vip/pics/{0}/{1}.jpg'.format(user, i+1)
             if not os.path.exists(file_path):
                 with open(file_path, 'wb') as f:
                     print('第{0}张下载完成： '.format(i+1) + dload[i])
@@ -76,3 +76,4 @@ if __name__ == '__main__':
 
 
 # 出错：重装了系统，更换了headers和cookie
+# /Volumes/My Passport/vip

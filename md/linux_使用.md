@@ -137,7 +137,13 @@
 
 ## 三. 远程登录
 + SSHD远程服务开启
-
++ `ssh lighthouse@120.53.242.158` 远程登录腾讯云服务器
+  + 将`id_rsa`私钥文件拷贝到`/home/zhulu/.ssh`目录下
+  + `scp ~/zhulu/data/exam.txt root@120.53.242.158:/home/lighthouse/data`，和下面语句的区别，此时为root用户，～不是指`/home/lighthouse`
+  + `scp ~/zhulu/data/exam.txt root@120.53.242.158:~/data` 将数据上传到`/root`，root的家目录； 
++ 注意区分用户家目录和root家目录
+  + `root`命令界面，～指`/root/`文件夹
+  + `lighthouse`用户界面，～指`/home/lighthouse/`文件夹
 
 ## 四. 运行级别
 + `init 0`:切换0运行别,关机.
@@ -157,11 +163,6 @@
 ## 五.帮助指令
 + `man+指令`:查看该指令的说明,例如`man ls`, 空格下一页,`q`退出.
 + `help+指令`:获取shell内置命令的帮助信息.
-
-
-
-
-
 
 ## 六.vim编辑器
 + vim的三种模式:

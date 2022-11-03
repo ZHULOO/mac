@@ -1,7 +1,8 @@
 [TOC]
 # Sublime使用
-+ Sublime最轻便，配置stata和md使用；
-+ 常用快捷键  
++ Sublime最轻便，配置stata使用；
++ 常用快捷键（和Vscode一致）：  
++ windows快捷键：
 
 |sublime|对应操作|vscode|
 |:----|:----|:----|
@@ -22,39 +23,82 @@
 |`ctrl+shift+e`| 选择行 | `   ` |
 |`ctrl+e`| 删除行 | `   ` |
 
++ MAC快捷键和Vscode对应：
+
+|sublime|对应操作|vscode|
+|:----|:----|:----|
+|`command+d`| 选中相同项 | `ctrl+d `（已修改为F3） | 
+|` `|   | ` `| 
+|` `|   | ` `| 
+|` `|   | ` `| 
+|` `|   | ` `| 
+|` `|   | ` `| 
+
 ## 一、关于Sublime
 
 ### 1.1 安装和破解
 + Sublime安装
-+ 破解
++ 破解：安装后，先Host防验证工具，然后复制序列号激活；
++ 记得设置`"update_check":false,`不自动更新；
 
 ### 1.2 插件安装
-+ 常用插件
-    * Color Highlighter：十六进制颜色代码提示
++ 常用插件：
+    + `Package Control`：包管理插件；
+    + `PackageResourceViewer`：查看包文件插件；
+    + `A File Icon`：文件类型图标；
+    + `Material Theme`：Material主题；
+    + `Color Highlighter`：十六进制颜色预览；
+    + `RainbowBrackets`：配对括号颜色高亮；
+    + `Stata Improved Editor`：Stata插件；
+    + `Sync Settings`：Sublime设置同步插件；
++ 几个简易插件的设置：
+    + `Color Highlighter`：十六进制颜色预览；
+        ```
+        "file_extensions": [".css", ".less", ".scss", ".sass", ".styl", ".tmTheme", ".sublime-settings"], //增加.tmTheme相应的扩展名可以高亮显示其中的颜色；
+        ``` 
+    + `RainbowBrackets`：配对括号颜色高亮；
+        ```
+        "STATA": { //设置对stata的do文档中括号颜色的提示；
+        "bracket_pairs": {
+            "{": "}",
+            "[": "]",
+            "(": ")",
+        },
 
+        "extensions": [
+            ".do",
+        ],
 
-
+            "ignored_scopes": [
+                "comment", "string"
+            ]
+        },
+        ```  
 ### 1.3 主题设置
-+ 主题安装和设置
-    * 安装：
-        - `ctrl+shift+p`->`install package`->`material theme`
-    * 设置： （Material插件设置）
-        - `ctrl+shift+p`->`open resource`->`theme`打开插件设置js文件；
-        - 侧边栏设置
-            + 搜索"sidebar_label"
-            + font_size:大小
-            + font_face:字体
-        - 标签设置
-            + 搜索"tab_height"
-        - 状态栏设置
-            + 搜索"statusbar"
-        - 注释颜色：
-            + `ctrl+shift+p`->`open resource`->`Material Theme/schemes/Material-Theme.tmTheme`打开`Material-Theme.tmTheme`；
-            + 搜索`comment`修改颜色为`#0dbc79`;
++ `Material Theme`主题安装和设置:
+    + 安装material主题：
+        + `ctrl+shift+p`->`install package`->`Material Theme`
+    + 设置Material主题： （Material插件设置）
+        + `ctrl+shift+p`->`open resource`->`Material Theme`：可以打开material主题插件包里的各类文件文件；
+    + 设置标题栏颜色：
+        + 修改白色为系统统一颜色； 
+        + `ctrl+shift+p`->`open resource`->`Material Theme`打开`Preference.sublime-settings`文件，这里设置`true`或`false`来简单设置一些外观显示；
+        + `"material_theme_titlebar": true,`将标题栏设置为统一颜色；
+    + 侧边栏设置：
+        + `ctrl+shift+p`->`open resource`->`Material Theme`打开`Material-Theme.sublime-theme`文件， 
+        + 搜索`sidebar_label`
+        + 添加：`"font.size": 14`设置侧边栏字体大小；
+        + `font.face`:字体
+    + 标签设置
+        + 搜索"tab_height"
+    + 状态栏设置
+        + 搜索"statusbar"
+    + 注释颜色：
+        + `ctrl+shift+p`->`open resource`->`Material Theme/schemes/Material-Theme.tmTheme`打开`Material-Theme.tmTheme`：可以修改各类关键字颜色；
+        + 搜索`comment`修改颜色为`#0dbc79`;
 ### 1.4 常用操作
 + 打开多个文件夹：`project`->`Add Folder to Project`
 + 禁止删除和安装插件，插件控制设置：`Prefenence`->`Settings`->`0_package_control_loader`语句；
-+ 
 
 ## 二、配置Stata
 
@@ -64,10 +108,10 @@
 + StataEditor的settings中配置本机stata目录；
 + 注册stata `cmd`窗口输入`StataMP-64.exe /Register`注册，`StataMP-64.exe /Regserver`解除注册；
 
-### 2.3 mac下直接安装`Stata Editor for macOS`插件即可；
+### 2.3 mac下直接安装`Stata Improved Editor`插件即可；
 
 ## 三、配置md
-
++ mac上不再配置sublime的md，预览不方便，全部改为vscode上；
 ### 3.2 markdown editing
 + markdown编辑插件
     * 设置markdown编辑器的格式；
@@ -113,4 +157,12 @@ import excel using "$1.xls",case(lower) first clear //content标签下是代码�
     <description>import data from excel</description>description //代码段的描述；
 </snippet>
 ```
-
+## 五、同步配置
++ 安装`sync settings`插件；
++ 设置中输入一下内容，保存后同步：
+```
+{
+	"access_token": "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",
+	"gist_id": "ec59f1c7e82d37271ab74fb1b1216b83",
+}
+```

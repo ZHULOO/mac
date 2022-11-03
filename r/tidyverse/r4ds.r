@@ -1340,5 +1340,38 @@ library(nycflights13)
 # 三种日期和时间类型：date、time和dttm（date，time）
 today()
 now()
+### 12.2.1 通过字符串创建
+ymd("20170101")
+ymd("2017-01-01")
+mdy("01312017")
+dmy("31-Jan-2017")
+dmy("31-1-2017")
+ymd("20170321")
+### 12.2.2 通过各个成分创建
+flights %>% 
+  select(year, month, day, hour, minute) %>% 
+  mutate(
+    departure = make_datetime(year, month, day, hour, minute)
+  )
 
-# 第 9 章 ----------------------------------------------------------
+make_datetime_100 <- function(year, month, day, time) {
+  make_datetime(year, month, day, time %/% 100, time %% 100) # 求商和余数
+}
+
+flights_dt <- flights %>% 
+  filter(!is.na(dep_time), !is.na(arr_time)) %>% 
+  mutate(
+    dep_time = make_datetime_100(year, month, day, dep_time),
+    arr_time = make_datetime_100(year, month, day, arr_time),
+    sched_dep_time = make_datetime_100(year, month, day, sched_dep_time),
+    sched_arr_time = make_datetime_100(year, month, day, sched_arr_time),
+  ) %>% 
+  select(origin, dest, ends_with("delay"), ends_with("time"))
+
+flights_dt
+
+10 %/% 3
+10 %% 3
+
+# 第13章 ---------------------------------------------------------------
+
