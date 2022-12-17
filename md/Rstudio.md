@@ -1,7 +1,7 @@
 # 关于Rstudio的使用技巧
 ## 自定义代码编辑器主题
 + 在Rstudio安装目录下，找到主题所在目录`/Applications/RStudio.app/Contents/Resources/resources/themes`；
-+ 例如找到`solarized_dark.rstheme`主题，然后使用`vscode`打开后修改对应的字体或颜色等；
++ 例如找到正在使用的`solarized_dark.rstheme`主题，然后使用`vscode`打开后修改对应的字体或颜色等；
 ## 快捷键设置
 + `Ctrl + D`：将默认`Ctrl + Enter`修改运行代码；
 + `Ctrl + Shift + R`：插入脚本书签；
@@ -11,4 +11,5 @@
 + 
 ## 特殊操作符
 + 
-## 
+## 修改注释字体颜色
++ `ace_content`->`ace_layer ace_text-layer`->`ace_line`->`ace_comment`->右侧修改颜色

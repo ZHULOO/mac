@@ -769,12 +769,30 @@ abline(b0,b1,lwd=2)
 # 添加图例:
 legend("topleft",c("Population","OLS regression"),lwd = c(2,1),col=c("black","gray"))
 
+# par-opar ----------------------------------------------------------
+dose <- c(20, 30, 40, 45, 60)
+drugA <- c(16, 20, 27, 40, 60)
+drugB <- c(10, 18, 25, 60, 20)
+# 先默认画一个图
+plot(dose, drugA, type="b") # 图形默认参数为空心点、实线型
 
+# 使用par()函数修改图形点和线的类型
+opar <- par(no.readonly=TRUE) # 修改之前保存之前的图形参数为opar，以便后面恢复；
+par(lty=2, pch=17)
+# 再次画图，可以看到图形的点变成了实心三角，线变成了虚线
+plot(dose, drugA, type="b")
+plot(dose, drugB, type="b")
+# 如果要恢复到当初的空心圆加实线：
+par(opar)
+plot(dose, drugA, type="b")
+plot(dose, drugB, type="b")
 
-
-
-
-
-
+# 关于画图参数
+type：线条类型
+lty：线条类型
+pch：点类型
+cex：缩放
+col：颜色
+font：字体
 
 
