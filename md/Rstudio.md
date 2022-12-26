@@ -11,5 +11,3 @@
 + 
 ## 特殊操作符
 + 
-## 修改注释字体颜色
-+ `ace_content`->`ace_layer ace_text-layer`->`ace_line`->`ace_comment`->右侧修改颜色

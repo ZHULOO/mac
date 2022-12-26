@@ -1,9 +1,9 @@
 #########################R for Data Science#######################
 # 第1章 使用ggplot2进行数据可视化
 ## 1.1 简介
-install.packages("tidyverse")
+# install.packages("tidyverse")
 library(tidyverse)
-ggplot2::ggplot() # 使用某个包的某个函数
+# ggplot2::ggplot() # 使用某个包的某个函数
 data(package = "dplyr") # 查看包里的数据集
 readr_example("challenge.csv") # 返回案例数据集的路径
 
@@ -1370,8 +1370,120 @@ flights_dt <- flights %>%
 
 flights_dt
 
-10 %/% 3
-10 %% 3
+10 %/% 3 # 整除
+10 %% 3  # 求余
 
-# 第13章 ---------------------------------------------------------------
+# 第13章 使用magrittr进行管道操作 ---------------------------------------------------------------
+## 13.2
+library("magrittr")
+# 一只兔兔叫福福
+# 蹦蹦跳跳过森林
+# 抓起一窝小田鼠
+# 每只头上打一下
 
+### 13.2.1 中间步骤
+# 首先定义一个对象叫foo_foo
+foo_foo <- little_bunny() 
+# 接着做三个动作
+foo_foo_1 <- hop(foo_foo, through = forest)
+foo_foo_2 <- scoop(foo_foo_1, up = field_mice)
+foo_foo_3 <- bop(foo_foo_2, on = head)
+# 这样的话要定义多个不必要中间变量，还会占用大量内存，虽然内存不是应该担心的问题；
+# 可以使用管道符，R很智能，会共享数据框中重复出现的列
+# 例如：
+diamonds <- ggplot2::diamonds
+diamonds2 <- diamonds %>% dplyr::mutate(price_per_carat = price / carat)
+# diamonds2只是给diamonds增加列一类，其它列没有变动，我们看一下它们占用的内存
+# install.packages("pryr")
+pryr::object_size(diamonds)             # 3.46M
+pryr::object_size(diamonds2)            # 3.89M
+pryr::object_size(diamonds, diamonds2) # 3.89M,放在一起占用了3.89M的内存
+# 两个数据集共用重复的10列，diamonds2多出了一列
+# 如果更改diamonds中的一列：
+diamonds$carat[1] <- NA
+pryr::object_size(diamonds)             # 3.46M
+pryr::object_size(diamonds2)            # 3.89M
+pryr::object_size(diamonds, diamonds2)  # 4.32
+# carat发生了改变，二者无法共用了，必须创建一个副本，所以二者个字大小不变，但总的大小增加了；
+
+### 13.2.2 重写初始对象
+# 也可以不定义多个变量，使用同一个变量名，但是容易迷惑
+foo_foo <- hop(foo_foo, through = forest)
+foo_foo <- scoop(foo_foo, up = field_mice)
+foo_foo <- bop(foo_foo, on = head)
+
+### 13.2.3 函数组合
+# 还可以使用函数组合
+bop(
+  scoop(
+    hop(foo_foo, through = forest),
+    up = field_mice
+    ),
+    on = head
+  )
+)
+# 层次太多，从内向外，从右向左阅读，不太适合人类阅读；
+
+### 13.2.4 使用管道
+# 如果使用管道符，则简明扼要，容易阅读：
+foo_foo %>% 
+  hop(through = forest) %>% 
+  scoop(up = field_mice)  %>% 
+  bop(on = head)
+# 相当于：
+my_pipe <- function(.){
+  . <- hop(., through = forest)
+  . <- scoop(., up = field_mice)
+  bop(., on = head)
+}
+my_pipe(foo_foo)
+
+# 但是管道符不支持以下两类函数：
+# 使用当前环境的函数：
+assign("x", 10)
+x
+"x" %>% assign(100)
+x
+# 可以发现，x的值并未改变，依然为10；
+# assign函数使用当前环境，会在当前环境中使用给定名称创建一个新变量，而管道符 %>% 是在建立的一个临时环境中进行的，所以这时要使用管道符，必须显示地指定环境：
+env <- environment()
+"x" %>% assign(100, envir = env)
+x
+# 使用惰性求值的函数：
+# 这种函数不会在函数调用前计算函数的参数，只是在函数使用时才进行计算，而管道以此计算每个参数，因此不能用在这种函数上；
+tryCatch(stop("!"), error = function(e) "An error")
+stop("!") %>% 
+  tryCatch(error = function(e) "An error")
+
+## 13.3 不适合使用管道的情形
+# 操作步骤超过10个
+# 有多个输入输出
+# 复杂依赖关系
+
+## 13.4 magrittr中其它工具
+# 使用时需要加载magrittr包
+library(magrittr)
+#  %T>%
+set.seed(12345)
+rnorm(100) %>% 
+  matrix(ncol = 2) %>% 
+  plot() %>% 
+  str()
+
+set.seed(12345)
+rnorm(100) %>% 
+  matrix(ncol = 2) %T>% 
+  plot() %>% 
+  str()
+
+#  %$% 
+# 爆炸符，将数据框中的变量炸出来，可以直接显示地引用
+mtcars %$%
+  cor(disp, mpg)
+
+# %<>%
+# 管道+赋值
+mtcars <- mtcars %>% 
+  transform(cyl = cyl *  2)
+
+mtcars %<>% transform(cyl = cyl * 2)
