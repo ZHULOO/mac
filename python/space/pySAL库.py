@@ -167,17 +167,11 @@ gdf.columns
 gdf.to_file('columbus_gdf.shp')
 gdf.dtypes
 # 论文数据excel-->shp
-df = pd.read_excel("F:\Books\python\pySAL\columbus\geff_space.xlsx")
+df = pd.read_excel("geff_space.xlsx")
 gdf = gpd.GeoDataFrame(df,geometry=gpd.points_from_xy(df.longitude, df.latitude))
 gdf.crs = 'EPSG:4326'
 gdf.to_file('geff_space.shp',driver='ESRI Shapefile',encoding='utf-8')
 df.to_excel('geff_space_geo.xlsx')
-
-
-
-
-
-
 
 
 
@@ -353,12 +347,19 @@ for i in range(2):
 
 plt.show()
 
+############产业集聚莫兰散点图#############
+# 读取转换文件
+import os
+import pandas as pd
+import geopandas as gpd
+from shapely import geometry
 
 
-
-
-
-
+os.chdir(r"/users/zhulu/files/data/郑大")
+df = pd.read_excel(r"/users/zhulu/files/data/郑大/agg_space.xlsx")
+gdf = gpd.GeoDataFrame(df,geometry=gpd.points_from_xy(df.longitude, df.latitude))
+gdf.crs = 'EPSG:4326'
+gdf.to_file('agg_space.shp',driver='ESRI Shapefile',encoding='utf-8')
 
 
 

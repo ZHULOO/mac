@@ -6,5 +6,8 @@
 		{
 			"path": "../../学习/R/机器学习及R应用"
 		}
-	]
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "MyGit"
+	}
 }

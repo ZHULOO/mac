@@ -79,7 +79,7 @@
   
 *面板数据回归分析：
 
-    cd E:\stata\data\
+    cd /Users/zhulu/Files/data
     use traffic.dta,clear
     xtset state year             //设置面板数据的两个维度    
     xtdes                        //（显示面板数据的结构，是否为平衡面板数据）

@@ -32,6 +32,7 @@ conda env list #列出当前可用的虚拟环境
 conda create -n matlab_vs python=3.7.0 #创建一个名称为matlab_vs的虚拟环境，使用python3.7.0版本；
 conda activate matlab_vs # 激活matlab_vs环境；
 conda deactivate # 关闭当前环境；
+conda remove -n geo --all # 删除环境
 
 # 或者创建一个全新的环境，并为环境设置一个单独的源设置文件.condarc
 # 然后安装geopandas可以成功，如下：
@@ -77,6 +78,9 @@ custom_channels:
 import os
 os.getcwd() #显示当前工作路径
 os.chdir()  #改变当前工作路径
+os.listdir() # 列出当前目录下文件
+os.system("start .") # windows打开目录
+os.system("open .")  # mac打开目录 
 f = open('test.txt','w') #就可以直接打开当前路径下的文件了
 .py文件不能和包和命令名重复,否则报错
 

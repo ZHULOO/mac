@@ -7,6 +7,7 @@
 	//因变量只有满足y>=c(常数)的数据被观测到,由于没有y<c的数据而造成左边断尾;
 	//左边段位,OLS估计是不一致的,使用MLE能得到一致估计:
 cd "E:\data"
+cd "/Users/zhulu/Files/data"
 use laborsub.dta,clear
 tabulate lfp //lfp频数统计表:
 1 if woman |
@@ -200,7 +201,7 @@ logit t age educ black hisp married re74 re75 u74 u75
 predict pscore
 psmatch2 t,pscore(pscore) outcome(re78) common noreplacement
 
-cd E:\data
+cd "/Users/zhulu/Files/data"
 use ldw_exper.dta,clear
 reg re78 t,r //先直接用结果变量对处理变量进行回归,看是否显著,然后加入协变量进行回归:
 reg re78 t age educ black hisp married re74 re75 u74 u75,r //只有两个变量显著其余均不显著,考虑倾向得分匹配:
@@ -262,7 +263,7 @@ Bootstrap results                               Number of obs     =        445
              |   Observed   Bootstrap                         Normal-based
              |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
-       _bs_1 |   1.410593   .8860627     1.59   0.111    -.3260577    3.147244 //ATT的标准误围殴0.93;
+       _bs_1 |   1.410593   .8860627     1.59   0.111    -.3260577    3.147244 //ATT的标准误0.93;
        _bs_2 |    1.62936   .9156438     1.78   0.075    -.1652692    3.423988 //也给出了ATU和ATE标准误和P值,在10%水平上显著;
        _bs_3 |   1.536688   .7132009     2.15   0.031     .1388396    2.934536
 ------------------------------------------------------------------------------

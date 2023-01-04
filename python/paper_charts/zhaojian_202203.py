@@ -14,6 +14,7 @@ def map_base(data,title,year,min1,max1,p1,p2):
             series_name=year, # 位置和字体等在legend中设置；
             data_pair=data,
             maptype='china',
+            label_opts = opts.LabelOpts(is_show=False),
         )
         #.set_series_opts(label_opts=opts.LabelOpts(is_show = False))
         .set_global_opts(
@@ -48,7 +49,7 @@ def map_base(data,title,year,min1,max1,p1,p2):
 
 if __name__ == "__main__":
     filename = sys.argv[1]
-    datafile = r'E:\data\Others\zhaojian\{0}.xls'.format(filename)
+    datafile = r'/Users/zhulu/Files/data/Others/zhaojian/{0}.xls'.format(filename)
     data = pd.read_excel(datafile)
     X = data['地区']
     title = filename[4:8:]
@@ -63,5 +64,25 @@ if __name__ == "__main__":
     max1 = max(Y1)
     p1 = min1 + (max1-min1)/3
     p2 = p1 + (max1-min1)/3
-    #map_base(dic,title,year,min1,max1).render(r'E:\data\Others\zhaojian\{0}.html'.format(filename))
-    make_snapshot(snapshot,map_base(dic,title,year,min1,max1,p1,p2).render(),r'E:\data\Others\zhaojian\{0}.png'.format(filename))
+    make_snapshot(snapshot,map_base(dic,title,year,min1,max1,p1,p2).render(),r'/Users/zhulu/Files/data/Others/zhaojian/{0}.png'.format(filename))
+
+'''
+filename = "2020耦合度"
+datafile = r'/Users/zhulu/Files/data/Others/zhaojian/{0}.xls'.format(filename)
+data = pd.read_excel(datafile)
+X = data['地区']
+title = filename[4:8:]
+Z = list(data['{0}'.format(title)])
+Y1 = []
+for i in Z:
+    Y1.append(float('%.4f'%i))
+dic = [list(z) for z in zip(X, Y1)] # 生成成对的字典型数据;
+year = filename[:4:]+'年'
+title1 = year + title
+min1 = min(Y1)
+max1 = max(Y1)
+p1 = min1 + (max1-min1)/3
+p2 = p1 + (max1-min1)/3
+map_base(dic,title,year,min1,max1,p1,p2).render()
+make_snapshot(snapshot,map_base(dic,title,year,min1,max1,p1,p2).render(),r'/Users/zhulu/Files/data/Others/zhaojian/{0}.png'.format(filename))
+'''

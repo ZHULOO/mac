@@ -594,7 +594,7 @@ Bootstrap results                               Number of obs     =        445
     pstest $shine bus1 bus2 bus3 bus4 bus5 ind1 ind2 ind3 ind4 ind5 ind6 ind7 ind8 i.year
 
 *****文章的完整程序:
-cd "F:\DownLoad\中国工业经济\新能源企业创新的市场化激励"
+cd "/Users/zhulu/Files/data"
 save 新能源企业创新的市场化激励.dta,replace
 
 
